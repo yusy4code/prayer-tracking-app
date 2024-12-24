@@ -1,5 +1,5 @@
-const TICK_MARK = "&#10004;";
-const CROSS_MARK = "&#x2718;";
+const TICK_MARK = "&#9989;";
+const CROSS_MARK = "&#10008;";
 const BASE_URL = '/api/v1/prayers';
 
 const tbody = document.getElementById('prayer-table').getElementsByTagName('tbody')[0];
