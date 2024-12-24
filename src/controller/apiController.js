@@ -20,7 +20,7 @@ router.get('/prayers/:id', async (req, res) => {
 });
 
 router.get('/prayers', async (req, res) => {
-  const { prayerDate, limit = 10 } = req.query || {};
+  const { prayerDate, isDone } = req.query || {};
 
   if (prayerDate && !isValidDate(prayerDate)) {
     return res.status(400).json({ success: false, error: 'Invalid Date' });
@@ -30,8 +30,10 @@ router.get('/prayers', async (req, res) => {
   if (prayerDate) {
     query.prayerDate = new Date(prayerDate);
   }
-
-  const data = await PrayerModel.find(query).limit(limit);
+  if (isDone !== undefined) {
+    query.isDone = isDone.toUpperCase() === 'TRUE' ? true : false;
+  }
+  const data = await PrayerModel.find(query).sort({ prayerDate: -1 });
   return res.status(200).json(data);
 });
 
