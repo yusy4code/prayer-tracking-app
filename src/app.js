@@ -15,7 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(cors({ origin: 'http://localhost:4173' }));
+app.use(cors({ origin: 'http://localhost:5173' }));
 app.use(morgan(LOGGER_FORMAT));
 
 // API routes
