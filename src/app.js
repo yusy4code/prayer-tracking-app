@@ -32,4 +32,9 @@ app.get('*', (req, res) => {
 
 connectToDatabase().then(() => {
   app.listen(PORT, () => console.log(`App started on port ${PORT}`));
+
+  if (process.env.HEALTH_CHECK_ENABLED) {
+    console.log(`Starting the health check...`);
+    setInterval(() => console.log(`Server is up...`), 60000);
+  }
 }).catch(err => console.log('Error: ', err));
