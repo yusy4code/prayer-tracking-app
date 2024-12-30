@@ -37,4 +37,14 @@ router.get('/prayers', async (req, res) => {
   return res.status(200).json(data);
 });
 
+router.get('/health', (req, res) => {
+  const health = {
+    status: 'UP',
+    uptime: process.uptime(),
+    timestamp: Date.now(),
+  };
+  console.log(`Health result: ${JSON.stringify(health)}`);
+  return res.status(200).json(health); // Send health status as a JSON response
+});
+
 export default router;
